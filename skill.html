@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neomorphism Clock</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      ::selection {
+        color: green;
+        background: #fff;
+      }
+
+      body {
+        margin: 0 50px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+        background: rgba(52, 73, 62, 1);
+        overflow: hidden;
+      }
+
+      .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .clock {
+        position: relative;
+        width: 550px;
+        height: 550px;
+        border-radius: 50%;
+        box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3),
+          -20px -20px 40px rgba(255, 255, 255, 0.1),
+          inset 20px 20px 40px rgba(0, 0, 0, 0.3),
+          inset -20px -20px 40px rgba(255, 255, 255, 0.1);
+        -webkit-box-reflect: below 10px
+          linear-gradient(to top, transparent, rgba(255, 255, 255, 0.5));
+      }
+
+      span {
+        width: 50%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        display: inline-block;
+        width: 250px;
+        height: 1px;
+        background: red;
+        z-index: 100;
+        transform: translate(-50%, -50%);
+        transform-origin: left;
+        border-radius: 50%;
+        box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2),
+          -2px -2px 1px rgba(255, 255, 255, 0.1);
+      }
+
+      #hour {
+        width: 150px;
+        height: 2px;
+        z-index: 100;
+        padding: 3px;
+        background: rgba(255, 255, 255, 1);
+      }
+
+      #minute {
+        padding: 2px;
+        width: 200px;
+        height: 2px;
+        z-index: 10;
+        background: black;
+      }
+
+      .pta__nhi {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: left;
+        transform: rotate(-90deg);
+      }
+
+      .title {
+        width: 55%;
+        padding: 10px;
+      }
+
+      h1 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 6em;
+        font-stretch: ultra-expanded;
+        color: rgba(52, 73, 62, 1);
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2),
+          -4px -4px 10px rgba(255, 255, 255, 0.1);
+      }
+
+      span:nth-child(4) {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(52, 73, 62, 1);
+        z-index: 1000;
+        border: 5px solid transparent;
+        box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.2),
+          -4px -4px 5px rgba(255, 255, 255, 0.1),
+          inset 2px 2px 2px rgba(0, 0, 0, 0.2),
+          inset -2px -2px 2px rgba(255, 255, 255, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="clock">
+        <div class="pta__nhi">
+          <span id="hour"></span>
+          <span id="minute"></span>
+          <span id="second" style="z-index: 200"></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="title">
+        <h1>Neomorphism <br />Clock</h1>
+      </div>
+    </div>
+    <script>
+      const Hour = document.getElementById('hour')
+      const Minute = document.getElementById('minute')
+      const Second = document.getElementById('second')
+      function getClock() {
+        let hour = new Date().getHours()
+        const minute = new Date().getMinutes()
+        const second = new Date().getSeconds()
+        if (hour >= 12) {
+          hour = hour - 12
+        }
+        Second.style.transform = `rotate(${second * 6}deg)`
+        Minute.style.transform = `rotate(${minute * 6}deg)`
+        Hour.style.transform = `rotate(${hour * 30}deg)`
+        console.log(second)
+      }
+
+      setInterval(getClock, 1000)
+    </script>
+  </body>
+</html>
